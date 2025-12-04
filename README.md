@@ -154,8 +154,8 @@ Stores:
 # 📦 **5. Clone the Project**
 
 ```bash
-git clone https://github.com/hlosukwakha/h2o-weaviate-dvc-superset.git
-cd h2o-weaviate-dvc-superset
+git clone https://github.com/hlosukwakha/h2o-weaviate-dvc-superset-ci.git
+cd h2o-weaviate-dvc-superset-ci
 ```
 
 ---
