@@ -1,257 +1,312 @@
-# H2O + Weaviate + DVC + Superset (Open Data Demo)
 
-This repository is a **GitHub-ready Docker project** showing an end-to-end, AI-native data stack using:
-
-- **H2O** – for data ingestion and preprocessing
-- **Weaviate** – AI-native vector database for semantic search
-- **DVC** – data versioning and pipeline reproducibility
-- **Apache Superset** – dashboarding and data visualization
-- **Open data source** – default: [OpenAQ](https://openaq.org) air-quality measurements (CSV API)
-
-The pipeline:
-
-1. Downloads open data (OpenAQ CSV API by default)
-2. Uses **H2O** to load and clean the data
-3. Stores cleaned records in **Weaviate** (vector DB)
-4. Writes the same cleaned data into **Postgres** for BI
-5. Exposes the data via **Superset** dashboards
-6. Uses **DVC** to version the data files and the pipeline stage
+# 🚀 H2O + Weaviate + DVC + Superset  
+## **A Nebius‑Optimized, GPU‑Accelerated Data Preparation & Analytics Pipeline**  
+### **Full PoC Implementation — Built for Nebius Cloud**
 
 ---
 
-## Architecture Overview
+## 📘 **1. Introduction — Why This Project Exists**
 
-**Services** (from `docker-compose.yml`):
+Modern data pipelines increasingly require **scalable machine learning ingestion**, **vector‑native storage**, **repeatable versioning**, and **real‑time visualization**. This Proof‑of‑Concept (PoC) demonstrates how these capabilities can be unified into a single workflow optimized for **Nebius AI Cloud** — a cloud platform engineered for **GPU‑accelerated data processing**, **high‑throughput object storage**, and **cost‑efficient AI workloads**.
 
-- `weaviate` – vector database with `text2vec-transformers`
-- `t2v-transformers` – transformer inference sidecar for Weaviate
-- `postgres` – metadata DB for Superset and analytics store for the open data
-- `superset` – BI layer and dashboards on top of Postgres
-- `h2o_ingestor` – Python + H2O ingestion/preprocessing pipeline
+This project integrates:
 
-**Data locations**:
+- **H2O** → Fast ML preprocessing  
+- **Weaviate (AI‑Native Vector Database)** → Semantic search & embeddings  
+- **DVC** → Dataset versioning & reproducibility  
+- **Apache Superset** → Enterprise‑grade dashboards  
+- **Postgres** → Persistent analytical storage  
 
-- `data/raw/opendata.csv` – raw downloaded data
-- `data/processed/opendata_clean.csv` – cleaned data
-
-These outputs are tracked by **DVC** when you initialize it locally.
+By combining these technologies, we demonstrate how Nebius Cloud’s **GPU compute**, **high‑performance object storage**, and **AI‑native infrastructure** significantly accelerate data preparation workflows.
 
 ---
 
-## Project Layout
+# ✨ **2. Why Nebius Cloud? (Strong Positioning)**
 
-```text
-.
-├── docker-compose.yml
-├── README.md
-├── dvc.yaml
-├── .gitignore
-├── .dvcignore
-├── .env.example
+Nebius Cloud provides a fully AI‑ready environment, particularly suited for:
+
+### 🔥 **GPU‑accelerated data preparation**  
+H2O and vector embedding models run **significantly faster** on Nebius GPU compute instances, enabling:
+
+- Rapid H2OFrame transformations  
+- High‑throughput vectorization in Weaviate  
+- Large‑scale semantic search workloads  
+
+---
+
+### ☁️ **High-performance Object Storage**  
+Nebius Object Storage serves perfectly as:
+
+- A central location for **DVC remote storage**  
+- A durable store for raw and intermediate datasets  
+- A scalable backend for ML workflows  
+
+---
+
+### 🧠 **AI‑native infrastructure & compatibility**  
+
+Using Nebius AI Cloud, the entire stack can run:
+
+- **As microservices on Nebius Kubernetes**
+- **In containerized GPU‑accelerated apps**
+- **Integrated with Nebius VMs & observability tools**
+
+This PoC highlights how enterprises can quickly experiment with an **AI‑augmented data pipeline** and later scale it across Nebius GPU and CPU nodes.
+
+---
+
+# 🧱 **3. Technology Stack Overview**
+
+Below is a breakdown of each component and its role.
+
+---
+
+## **3.1 H2O — Machine Learning Preprocessing Engine**
+
+H2O provides:
+
+- Distributed data processing  
+- Automatic ML transforms  
+- Efficient missing‑value handling  
+- H2OFrames for scalable ML workflows  
+
+On Nebius GPU instances, H2O pipelines can process datasets **orders of magnitude faster**.
+
+Used in this project for:
+
+- Converting CSV/GZ data into structured frames  
+- Cleaning, filtering & transforming datasets  
+- Preparing inputs for Weaviate and Postgres  
+
+If H2O is unavailable, the pipeline gracefully falls back to **pandas**.
+
+---
+
+## **3.2 Weaviate — AI‑Native Vector Database**
+
+Weaviate enables:
+
+- Real‑time vector search  
+- Semantic similarity  
+- Large‑scale embeddings  
+- Storing ML‑enriched documents  
+
+The project uses:
+
+- `text2vec-transformers` → Transformer-based vectorization  
+- Weaviate Collections API (v4)  
+- Bulk ingestion with automatic embedding generation  
+
+Running Weaviate on Nebius Cloud with GPU inference makes vector embedding extremely fast.
+
+---
+
+## **3.3 DVC — Data Version Control**
+
+DVC ensures:
+
+- Reproducible datasets  
+- Versioned ML preprocessing  
+- Hash‑based data lineage  
+- Cloud‑stored raw/processed data  
+
+DVC integrates nicely with:
+
+- Nebius Object Storage as a remote  
+- CI/CD pipelines (via GitHub Actions)
+
+---
+
+## **3.4 Apache Superset — Modern Data Visualization**
+
+Superset provides:
+
+- Dashboards  
+- SQL Lab exploration  
+- Visual charts and graphs  
+- Authentication & RBAC  
+
+Postgres acts as the analytical backend for Superset.
+
+---
+
+## **3.5 Postgres — Analytical Storage Layer**
+
+Stores:
+
+- Cleaned dataset from H2O/pandas  
+- Tables exposed directly to Superset  
+
+---
+
+# 🏷️ **4. Technology Badges**
+
+```
+[![H2O.ai](https://img.shields.io/badge/H2O.ai-yellow)]()
+[![Weaviate](https://img.shields.io/badge/Weaviate-VectorDB-blue)]()
+[![DVC](https://img.shields.io/badge/DVC-DataVersionControl-purple)]()
+[![Apache Superset](https://img.shields.io/badge/Superset-DataViz-green)]()
+[![Postgres](https://img.shields.io/badge/Postgres-Database-blue)]()
+[![Docker](https://img.shields.io/badge/Docker-Containers-2496ED)]()
+[![Nebius](https://img.shields.io/badge/Nebius-AI%20Cloud-orange)]()
+```
+
+---
+
+# 📦 **5. Clone the Project**
+
+```bash
+git clone https://github.com/hlosukwakha/h2o-weaviate-dvc-superset.git
+cd h2o-weaviate-dvc-superset
+```
+
+---
+
+# 🌲 **6. Project Tree**
+
+```
+h2o-weaviate-dvc-superset/
+│
 ├── data/
 │   ├── raw/
 │   └── processed/
-└── services/
-    └── h2o_ingestor/
-        ├── Dockerfile
-        ├── requirements.txt
-        └── ingest.py
+│
+├── dvc.yaml
+├── ingest.py
+├── docker-compose.yml
+│
+├── services/
+│   └── h2o_ingestor/
+│       ├── Dockerfile
+│       └── ingest.py
+│
+├── superset/
+│   ├── Dockerfile
+│   └── superset_config.py
+│
+└── README.md
 ```
-
-You can commit this repo to GitHub as-is.
 
 ---
 
-## Prerequisites
+# 🌍 **7. Data Source**
 
-- Docker & Docker Compose
-- (Optional) `dvc` CLI for local data versioning
-- (Optional) Python 3.11+ if you want to run the ingestion script outside Docker
+This PoC uses OpenAQ public datasets:
+
+Example dataset:
+
+```
+https://openaq-data-archive.s3.amazonaws.com/records/csv.gz/locationid=2178/year=2022/month=05/location-2178-20220503.csv.gz
+```
+
+The ingestor can be extended to support multiple datasets.
 
 ---
 
-## Quickstart
+# ➕ **8. Adding a Second Ingestor**
 
-### 1. Clone and configure
+1. Create new folder:
 
-```bash
-git clone https://github.com/your-user/h2o-weaviate-dvc-superset.git
-cd h2o-weaviate-dvc-superset
-
-cp .env.example .env   # optional
+```
+services/new_ingestor/
 ```
 
-### 2. Start core services
+2. Add Dockerfile + script:
 
-```bash
-docker-compose up -d weaviate t2v-transformers postgres superset
+```
+Dockerfile
+second_ingest.py
 ```
 
-### 3. Run the ingestion pipeline
-
-```bash
-docker-compose run --rm h2o_ingestor
-```
-
-The ingestion pipeline will:
-
-1. Download CSV data from `DATA_URL` (OpenAQ by default)
-2. Load into an `H2OFrame`
-3. Select relevant columns and drop rows with missing values
-4. Write `data/raw/opendata.csv` and `data/processed/opendata_clean.csv`
-5. Push cleaned rows into Weaviate (`Measurement` class)
-6. Load cleaned data into Postgres as table `openaq_measurements`
-
----
-
-## Superset Usage
-
-Superset runs at <http://localhost:8088>
-
-Default admin credentials (from `docker-compose.yml`):
-
-- username: `admin`
-- password: `admin`
-
-In Superset:
-
-1. **Add a Database**:
-   - SQLAlchemy URI: `postgresql://superset:superset@superset-db:5432/superset`
-2. **Add a Dataset**:
-   - Database: `superset`
-   - Table: `openaq_measurements`
-3. Explore the dataset and build charts/dashboards.
-
----
-
-## Weaviate Semantic Search
-
-Weaviate stores the `Measurement` class with properties:
-
-- `location`
-- `city`
-- `country`
-- `parameter`
-- `value`
-- `unit`
-
-You can query via GraphQL, e.g.:
-
-```bash
-curl -s -X POST "http://localhost:8080/v1/graphql" \
-  -H "Content-Type: application/json" \
-  -d '{
-    "query": "{
-      Get {
-        Measurement(
-          nearText: { concepts: [\"PM2.5 pollution\"] }
-          limit: 5
-        ) {
-          location
-          city
-          country
-          parameter
-          value
-          unit
-        }
-      }
-    }"
-  }'
-```
-
-This uses Weaviate's `nearText` operator to find semantically similar items.
-
----
-
-## DVC Integration
-
-The `dvc.yaml` defines one stage: `ingest`.
+3. Register service inside `docker-compose.yml`:
 
 ```yaml
-stages:
-  ingest:
-    cmd: python services/h2o_ingestor/ingest.py
-    deps:
-      - services/h2o_ingestor/ingest.py
-    outs:
-      - data/raw/opendata.csv
-      - data/processed/opendata_clean.csv
+new_ingestor:
+  build: ./services/new_ingestor
+  depends_on:
+    - postgres
+    - weaviate
+  environment:
+    DATA_URL: <second-dataset-url>
+    DATASET_NAME: dataset2
 ```
 
-To enable DVC locally:
+4. Update DVC:
 
 ```bash
-dvc init
-dvc repro                    # run the pipeline stage
-dvc add data/raw/opendata.csv data/processed/opendata_clean.csv
-git add dvc.yaml data/*.dvc .dvc .gitignore .dvcignore
-git commit -m "Add DVC pipeline"
+dvc add data/processed/new_dataset.csv
 ```
 
-You can then configure a remote (S3, GCS, etc.) and use `dvc push` / `dvc pull` to share data.
-
 ---
 
-## Customising the Open Data Source
+# ▶️ **9. How to Start & Run**
 
-Default data source: OpenAQ CSV API
-
-```text
-https://api.openaq.org/v2/measurements?limit=1000&format=csv
-```
-
-Change it using the `DATA_URL` environment variable (in `.env` or `docker-compose.yml`). For a different CSV:
-
-1. Make sure `pandas.read_csv(DATA_URL)` works.
-2. Adjust the columns used in `process_with_h2o()` if necessary.
-
----
-
-## H2O in the Pipeline
-
-H2O is used here to:
-
-- Start a local cluster in the ingestion container
-- Convert a pandas DataFrame into an `H2OFrame`
-- Perform basic selection and filtering
-- Convert back to pandas for export
-
-You can extend this to:
-
-- AutoML training (`H2OAutoML`)
-- Advanced transformations and feature engineering
-- Scoring/prediction and pushing those into Weaviate/Postgres
-
----
-
-## One-shot Demo Run
-
-For a simple demo:
+### 1. Build and start entire stack:
 
 ```bash
-docker-compose up --build
+docker-compose up --build -d
 ```
 
-Once all services are up, run the ingestor in another terminal:
+### 2. Run the ingestion pipeline manually:
 
 ```bash
-docker-compose run --rm h2o_ingestor
+docker-compose logs -f h2o_ingestor
+```
+
+### 3. Access Superset:
+
+```
+http://localhost:8088
 ```
 
 ---
 
-## Production Notes
+# 🛠️ **10. Issues & Troubleshooting (Table Format)**
 
-For real-world use:
-
-- Set a strong `SUPERSET_SECRET_KEY`
-- Restrict anonymous access to Weaviate
-- Put Postgres and Weaviate behind proper networking and security
-- Add monitoring/logging
-- Add CI/CD (GitHub Actions) that runs `dvc repro` and tests on PRs
+| Issue | Explanation | Fix | Sanity Check Commands |
+|-------|-------------|-----|------------------------|
+| **1. Superset user (admin) not found** | Superset CLI user creation failed or did not run | Re-run admin creation command | `docker-compose exec superset superset fab list-users` |
+| | | | Create user: `docker-compose exec superset superset fab create-admin --username admin --password admin --firstname Admin --lastname User --email admin@example.com` |
+| **2. Database table is not being created** | Ingestor crashes before Postgres stage; SKIP flags misconfigured | Ensure `SKIP_POSTGRES=false` and wrap Weaviate ingestion in `try/except` | `docker-compose exec postgres psql -U superset -d superset -c "\dt"` |
+| **3. Superset database connection errors** | Missing Postgres driver (`psycopg2-binary`) | Use custom Superset image with dependencies installed | Inside container: `python -c "import psycopg2"` |
+| **4. Refusing to start due to insecure SECRET_KEY** | Superset refuses default insecure keys | Create custom `superset_config.py` | Check inside container: `cat /app/superset_config.py` |
+| | | Generate secure key: `openssl rand -base64 42` | |
+| **5. service "superset" refers to undefined volume** | Bind mount missing or misconfigured | Add volume definitions under `volumes:` | `docker-compose config` |
+| **6. ModuleNotFoundError: flask_cors** | Python dependencies installed in wrong venv | Install via `EXTRA_PIP_REQUIREMENTS` or custom Dockerfile | `docker-compose exec superset python -c "import flask_cors"` |
+| **7. GET Weaviate schema 403** | Raft not initialized; vectorizer not ready | Increase wait time; add single-node Raft config | `curl http://localhost:8080/v1/schema` |
+| **8. leader not found (Raft)** | Single-node cluster needs explicit bootstrap | Add `RAFT_BOOTSTRAP_EXPECT=1` etc. | Check logs: `docker-compose logs weaviate` |
 
 ---
 
-## License
+# 🎯 **11. Summary**
 
-Pick a license (MIT/Apache 2.0/etc.) and add a `LICENSE` file if open-sourcing.
+This PoC shows how Nebius Cloud can power a **fast, GPU‑accelerated**, reproducible data stack:
+
+- H2O for data engineering  
+- Weaviate for vector search  
+- DVC for versioning  
+- Superset for analytics  
+- Postgres for storage  
+
+When deployed on Nebius GPU instances, this pipeline becomes significantly faster, more scalable, and ready for enterprise AI workloads.
+
+---
+
+# ✔️ **12. Final Notes**
+
+This README is meant to serve as:
+
+- A **technical guide**
+- A **deployment manual**
+- A **Nebius‑aligned architecture reference**
+- A **troubleshooting dictionary**
+
+For enterprise-scale deployments, consider:
+
+- Running Weaviate on **Nebius GPU Kubernetes**  
+- Storing DVC remotes in **Nebius Object Storage**  
+- Using Nebius **GPU inference endpoints** for ultra-fast embedding generation  
+
+---
+
+End of README.md  
