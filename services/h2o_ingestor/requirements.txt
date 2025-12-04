@@ -1,0 +1,9 @@
+h2o==3.46.0.1
+pandas
+requests
+SQLAlchemy
+psycopg2-binary
+python-dotenv
+weaviate-client>=4.0,<5.0
+Pillow==9.4.0 
+flask-cors==3.0.10

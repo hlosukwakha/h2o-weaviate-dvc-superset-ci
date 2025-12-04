@@ -1,0 +1,16 @@
+stages:
+  ingest:
+    cmd: python services/h2o_ingestor/ingest.py
+    deps:
+      - services/h2o_ingestor/ingest.py
+    outs:
+      - data/raw/opendata.csv
+      - data/processed/opendata_clean.csv
+
+  ingest_secondary:
+    cmd: python services/h2o_ingestor/ingest_secondary.py
+    deps:
+      - services/h2o_ingestor/ingest_secondary.py
+    outs:
+      - data/raw/secondary.csv
+      - data/processed/secondary_clean.csv

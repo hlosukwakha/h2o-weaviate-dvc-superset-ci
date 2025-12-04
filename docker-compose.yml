@@ -1,0 +1,120 @@
+services:
+  weaviate:
+    image: semitechnologies/weaviate:latest
+    container_name: weaviate
+    restart: unless-stopped
+    ports:
+      - "8080:8080"
+    environment:
+      QUERY_DEFAULTS_LIMIT: 25
+      AUTHENTICATION_ANONYMOUS_ACCESS_ENABLED: "true"
+      PERSISTENCE_DATA_PATH: "/var/lib/weaviate"
+      DEFAULT_VECTORIZER_MODULE: "text2vec-transformers"
+      ENABLE_MODULES: "text2vec-transformers"
+      TRANSFORMERS_INFERENCE_API: "http://t2v-transformers:8080"
+      CLUSTER_HOSTNAME: "node1"
+      CLUSTER_GOSSIP_BIND_PORT: "7100"
+      CLUSTER_DATA_BIND_PORT: "7101"
+      RAFT_BOOTSTRAP_EXPECT: "1"
+      RAFT_JOIN: ""
+      RAFT_BOOTSTRAP: "single-node"
+    depends_on:
+      - t2v-transformers
+    networks:
+      - backend
+    volumes:
+      - weaviate_data:/var/lib/weaviate
+
+  t2v-transformers:
+    image: semitechnologies/transformers-inference:sentence-transformers-all-MiniLM-L6-v2
+    container_name: t2v-transformers
+    restart: unless-stopped
+    environment:
+      ENABLE_CUDA: "0"
+    networks:
+      - backend
+
+  postgres:
+    image: postgres:15
+    container_name: postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: superset
+      POSTGRES_USER: superset
+      POSTGRES_PASSWORD: superset
+    volumes:
+      - superset_db_data:/var/lib/postgresql/data
+    networks:
+      - backend
+
+  superset:
+    build:
+      context: ./superset
+      dockerfile: Dockerfile
+    image: superset-with-psycopg2
+    container_name: superset
+    restart: unless-stopped
+    depends_on:
+      - postgres
+    environment:
+      SUPERSET_ENV: development
+      SUPERSET_LOAD_EXAMPLES: "no"
+       # 🔑 Force Superset to use *this* config file
+      SUPERSET_CONFIG_PATH: /app/superset_config.py
+
+      # Secret key used by your config
+      #SUPERSET_SECRET_KEY: "ARsBtDQU3fVYNJO+rmAZvfSKWw+j3LldX0Ysd1l/cf+GHruz4TvRS1xx"
+      SQLALCHEMY_DATABASE_URI: postgresql+psycopg2://superset:superset@postgres:5432/superset
+      SUPERSET_ADMIN_USERNAME: admin
+      SUPERSET_ADMIN_PASSWORD: admin
+      SUPERSET_ADMIN_FIRSTNAME: Admin
+      SUPERSET_ADMIN_LASTNAME: User
+      SUPERSET_ADMIN_EMAIL: admin@example.com
+    volumes:
+      - ./superset_config/superset_config.py:/app/superset_config.py
+      - ./superset_home:/app/superset_home
+    ports:
+      - "8088:8088"
+    networks:
+      - backend
+    command: >
+      sh -c "
+        superset db upgrade &&
+        superset fab create-admin \
+          --username $SUPERSET_ADMIN_USERNAME \
+          --firstname $SUPERSET_ADMIN_FIRSTNAME \
+          --lastname $SUPERSET_ADMIN_LASTNAME \
+          --email $SUPERSET_ADMIN_EMAIL \
+          --password $SUPERSET_ADMIN_PASSWORD || true &&
+        superset init &&
+        gunicorn --bind 0.0.0.0:8088 'superset.app:create_app()'
+      "
+
+  h2o_ingestor:
+    build:
+      context: ./services/h2o_ingestor
+    container_name: h2o-ingestor
+    restart: "no"
+    depends_on:
+      - weaviate
+      - postgres
+    environment:
+      SKIP_H2O: "false"
+      SKIP_WEAVIATE: "false"
+      SKIP_POSTGRES: "false"
+      WEAVIATE_URL: http://weaviate:8080
+      POSTGRES_URI: postgresql://superset:superset@postgres:5432/superset
+      DATA_URL: https://openaq-data-archive.s3.amazonaws.com/records/csv.gz/locationid=2178/year=2022/month=05/location-2178-20220503.csv.gz
+      DATASET_NAME: openaq_measurements
+    networks:
+      - backend
+    volumes:
+      - ./data:/app/data
+
+networks:
+  backend:
+     driver: bridge
+
+volumes:
+  weaviate_data:
+  superset_db_data:

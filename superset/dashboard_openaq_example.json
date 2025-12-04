@@ -1,0 +1,26 @@
+{
+  "version": "1.0.0",
+  "type": "Dashboard",
+  "timestamp": "2025-12-03T00:00:00",
+  "data": {
+    "dashboard_title": "OpenAQ Example Dashboard",
+    "position_json": "{}",
+    "json_metadata": "{}",
+    "slices": [
+      {
+        "slice_name": "Average value by city",
+        "viz_type": "bar",
+        "params": {
+          "datasource": "openaq_measurements__table",
+          "granularity_sqla": null,
+          "groupby": ["city"],
+          "metrics": ["avg__value"],
+          "row_limit": 5000,
+          "x_axis_label": "City",
+          "y_axis_label": "Average value",
+          "time_range": "No filter"
+        }
+      }
+    ]
+  }
+}
