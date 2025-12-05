@@ -1,5 +1,17 @@
 
 # 🚀 H2O + Weaviate + DVC + Superset  
+
+# 🏷️ **4. Technology Stack**
+
+![H2O.ai](https://img.shields.io/badge/H2O.ai-ML%20Engine-yellow?logo=h2o.ai&logoColor=black)
+![Weaviate](https://img.shields.io/badge/Weaviate-Vector%20Database-blue?logo=weaviate&logoColor=white)
+![DVC](https://img.shields.io/badge/DVC-Data%20Versioning-purple?logo=dvc&logoColor=white)
+![Apache Superset](https://img.shields.io/badge/Superset-Data%20Visualization-00A9E0?logo=apache%20superset&logoColor=white)
+![PostgreSQL](https://img.shields.io/badge/Postgres-Database-336791?logo=postgresql&logoColor=white)
+![Docker](https://img.shields.io/badge/Docker-Containers-2496ED?logo=docker&logoColor=white)
+![Nebius](https://img.shields.io/badge/Nebius-AI%20Cloud-orange?logo=icloud&logoColor=white)
+
+---
 ## **A Nebius‑Optimized, GPU‑Accelerated Data Preparation & Analytics Pipeline**  
 ### **Full PoC Implementation — Built for Nebius Cloud**
 
@@ -139,25 +151,11 @@ Stores:
 
 ---
 
-# 🏷️ **4. Technology Badges**
-
-```
-[![H2O.ai](https://img.shields.io/badge/H2O.ai-yellow)]()
-[![Weaviate](https://img.shields.io/badge/Weaviate-VectorDB-blue)]()
-[![DVC](https://img.shields.io/badge/DVC-DataVersionControl-purple)]()
-[![Apache Superset](https://img.shields.io/badge/Superset-DataViz-green)]()
-[![Postgres](https://img.shields.io/badge/Postgres-Database-blue)]()
-[![Docker](https://img.shields.io/badge/Docker-Containers-2496ED)]()
-[![Nebius](https://img.shields.io/badge/Nebius-AI%20Cloud-orange)]()
-```
-
----
-
 # 📦 **5. Clone the Project**
 
 ```bash
-git clone https://github.com/hlosukwakha/h2o-weaviate-dvc-superset.git
-cd h2o-weaviate-dvc-superset
+git clone https://github.com/hlosukwakha/h2o-weaviate-dvc-superset-ci.git
+cd h2o-weaviate-dvc-superset-ci
 ```
 
 ---
