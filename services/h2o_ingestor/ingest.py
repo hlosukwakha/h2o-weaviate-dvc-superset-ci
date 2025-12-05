@@ -17,7 +17,7 @@ from weaviate.exceptions import WeaviateBaseError, UnexpectedStatusCodeException
 
 
 logging.basicConfig(
-    level=logging.DEBUG,  # or INFO if you prefer
+    level=logging.INFO,  # or INFO if you prefer
     format="[%(asctime)s] [%(levelname)s] %(message)s",
 )
 logger = logging.getLogger(__name__)
