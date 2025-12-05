@@ -2,9 +2,8 @@ __pycache__/
 *.pyc
 *.pyo
 *.pyd
-
+.pipe
 .env
-.env.*
 
 /.dvc/
 .vscode/
