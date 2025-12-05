@@ -39,7 +39,7 @@ jobs:
           dvc repro
 
       - name: Run tests
+        if: ${{ !env.SKIP_TESTS }}
         env:
           PYTHONPATH: ${{ github.workspace }}
-        run: |
-          pytest -v
+        run: pytest -v
