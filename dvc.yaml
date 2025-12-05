@@ -4,7 +4,7 @@ stages:
     deps:
       - services/h2o_ingestor/ingest.py
     outs:
-      - data/raw/opendata.csv
+      - data/raw/opendata.csv.gz
       - data/processed/opendata_clean.csv
 
   ingest_secondary:
