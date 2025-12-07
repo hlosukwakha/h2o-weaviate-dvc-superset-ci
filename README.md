@@ -1,7 +1,7 @@
 
 # 🚀 H2O + Weaviate + DVC + Superset  
 
-# 🏷️ **4. Technology Stack**
+# 🏷️ **1. Technology Stack**
 
 ![H2O.ai](https://img.shields.io/badge/H2O.ai-ML%20Engine-yellow?logo=h2o.ai&logoColor=black)
 ![Weaviate](https://img.shields.io/badge/Weaviate-Vector%20Database-blue?logo=weaviate&logoColor=white)
@@ -17,7 +17,7 @@
 
 ---
 
-## 📘 **1. Introduction — Why This Project Exists**
+## 📘 **2. Introduction — Why This Project Exists**
 
 Modern data pipelines increasingly require **scalable machine learning ingestion**, **vector‑native storage**, **repeatable versioning**, and **real‑time visualization**. This Proof‑of‑Concept (PoC) demonstrates how these capabilities can be unified into a single workflow optimized for **Nebius AI Cloud** — a cloud platform engineered for **GPU‑accelerated data processing**, **high‑throughput object storage**, and **cost‑efficient AI workloads**.
 
@@ -33,7 +33,7 @@ By combining these technologies, we demonstrate how Nebius Cloud’s **GPU compu
 
 ---
 
-# ✨ **2. Why Nebius Cloud? (Strong Positioning)**
+# ✨ **3. Why Nebius Cloud? (Strong Positioning)**
 
 Nebius Cloud provides a fully AI‑ready environment, particularly suited for:
 
@@ -67,13 +67,13 @@ This PoC highlights how enterprises can quickly experiment with an **AI‑augmen
 
 ---
 
-# 🧱 **3. Technology Stack Overview**
+# 🧱 **4. Technology Stack Overview**
 
 Below is a breakdown of each component and its role.
 
 ---
 
-## **3.1 H2O — Machine Learning Preprocessing Engine**
+## **4.1 H2O — Machine Learning Preprocessing Engine**
 
 H2O provides:
 
@@ -94,7 +94,7 @@ If H2O is unavailable, the pipeline gracefully falls back to **pandas**.
 
 ---
 
-## **3.2 Weaviate — AI‑Native Vector Database**
+## **4.2 Weaviate — AI‑Native Vector Database**
 
 Weaviate enables:
 
@@ -113,7 +113,7 @@ Running Weaviate on Nebius Cloud with GPU inference makes vector embedding extre
 
 ---
 
-## **3.3 DVC — Data Version Control**
+## **4.3 DVC — Data Version Control**
 
 DVC ensures:
 
@@ -129,7 +129,7 @@ DVC integrates nicely with:
 
 ---
 
-## **3.4 Apache Superset — Modern Data Visualization**
+## **4.4 Apache Superset — Modern Data Visualization**
 
 Superset provides:
 
@@ -142,7 +142,7 @@ Postgres acts as the analytical backend for Superset.
 
 ---
 
-## **3.5 Postgres — Analytical Storage Layer**
+## **4.5 Postgres — Analytical Storage Layer**
 
 Stores:
 
